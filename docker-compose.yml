@@ -1,0 +1,22 @@
+@'
+version: "3.8"
+
+services:
+  backend:
+    image: 672768959275.dkr.ecr.us-east-1.amazonaws.com/maintanence-backend:latest
+    container_name: maintenance-backend
+    restart: always
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env.backend
+
+  frontend:
+    image: 672768959275.dkr.ecr.us-east-1.amazonaws.com/maintanence-frontend:latest
+    container_name: maintenance-frontend
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+'@ | Out-File -Encoding utf8 docker-compose.yml
